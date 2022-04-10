@@ -1,0 +1,4 @@
+{
+    "mode": "rprompt",
+    "content": "🐍$(python3 --version)"
+}

@@ -1,1 +1,28 @@
 #! /usr/bin/env python3
+import json
+import os
+
+import click
+
+widgets_dir = os.path.dirname(os.path.realpath(__file__)) + "/../widgets"
+
+
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+@click.argument("widget")
+def add(widget):
+    widget_data_file = open(f"{widgets_dir}/{widget}.json")
+    apply_file = open(
+        os.path.dirname(os.path.realpath(__file__)) + "/../data/widgets.sh", mode="a"
+    )
+    widget_data = json.load(widget_data_file)
+    if widget_data["mode"] == "rprompt":
+        apply_file.write(f"RPROMPT=$RPROMPT{widget_data['content']} ")
+
+
+if __name__ == "__main__":
+    cli()
