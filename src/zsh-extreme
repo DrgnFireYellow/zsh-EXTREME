@@ -21,8 +21,14 @@ def add(widget):
     )
     widget_data = json.load(widget_data_file)
     if widget_data["mode"] == "rprompt":
-        apply_file.write(f"RPROMPT=$RPROMPT{widget_data['content']} ")
-
-
+        apply_file.write(f"\nRPROMPT=\"$RPROMPT {widget_data['content']} \"")
+    widget_data_file.close()
+@cli.command()
+def reset():
+    data_file = open(
+            os.path.dirname(os.path.realpath(__file__)) + "/../data/widgets.sh", mode="w"
+    )       
+    data_file.write("\n")
+    data_file.close()
 if __name__ == "__main__":
     cli()

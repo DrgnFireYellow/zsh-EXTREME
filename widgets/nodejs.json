@@ -1,0 +1,4 @@
+{
+    "mode": "rprompt",
+    "content": "%F{green}⬢%f $(node --version)"
+}
