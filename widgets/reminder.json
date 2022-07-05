@@ -1,0 +1,4 @@
+{
+    "mode": "rprompt",
+    "content": "⏰$(cat ~/reminders.txt)"
+}
